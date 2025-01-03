@@ -1,9 +1,10 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
-
+import { UsersService } from './users.service';
 @Controller('users')
 export class UsersController {
+    constructor ( private readonly usersService: UsersService ) { }
     @Get()
-    GetAllUsers(@Param('role') role?: "Admin"| "user"){
+    GetAllUsers(@Param('role') role?: "admin"| "user"){
         return role
     }
 
@@ -13,7 +14,7 @@ export class UsersController {
     }
 
     @Get(":id")
-    GetSingleUser(@Param('id') id:string){
+    GetSingleUser(@Param('id') id:number){
         return { id }
     }
 
