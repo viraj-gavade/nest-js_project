@@ -8,11 +8,6 @@ export class UsersController {
         return this.usersService.GetAllUsers(role)
     }
 
-    @Get('interns')
-    GetInterns(){
-        return []
-    }
-
     @Get(":id")
     GetSingleUser(@Param('id') id:string){
         return this.usersService.GetSingleUser(+id)
@@ -25,7 +20,8 @@ export class UsersController {
 
     @Patch(":id")
     UpdateOne(@Param('id') id:string,@Body() updatedUser:{ name?:string,email?:string,role?:'admin'|'user'}){
-       this.usersService.UpdateOne(+id,updatedUser)
+        
+        return this.usersService.UpdateOne(+id, updatedUser)
     }
     @Delete(':id')
     DeleteOne(@Param('id') id:string){
